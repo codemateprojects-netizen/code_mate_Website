@@ -61,7 +61,7 @@ const Stamp = () => {
         fontWeight="800"
         letterSpacing="1"
       >
-        EST. 2025
+        EST. 2026
       </text>
 
       {/* BOTTOM TEXT */}
