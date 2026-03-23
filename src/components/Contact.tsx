@@ -21,7 +21,7 @@ const Contact = () => {
           <div style={styles.points}>
             <div style={styles.point}>
               <Mail size={18} />
-              <span>codemate.dev@gmail.com</span>
+              <span>codemate.projects@gmail.com</span>
             </div>
             <div style={styles.point}>
               <Clock size={18} />
