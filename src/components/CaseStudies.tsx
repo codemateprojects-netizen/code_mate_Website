@@ -1,7 +1,86 @@
+import { useState } from 'react'
 import { ArrowUpRight, Smartphone } from 'lucide-react'
 
 const CaseStudies = () => {
+  const [showAll, setShowAll] = useState(false)
+ 
   const cases = [
+     {
+      title: 'Startup Landing Website',
+      tag: 'Landing Page',
+      problem:
+        'A startup needed a clean landing page to validate an early-stage idea.',
+      solution:
+        'Created a high-performance landing experience optimized for outreach.',
+      tech: 'React · Vite',
+      outcome:
+        'Enabled faster validation and early traction.'
+    },
+    // 🔹 AI PROJECTS
+    {
+      title: 'AI Customer Support Chatbot',
+      tag: 'AI Application',
+      problem:
+        'Businesses needed automated customer support to handle repetitive queries and reduce response time.',
+      solution:
+        'Built an AI chatbot using OpenAI API with context handling and FAQ-based retrieval system.',
+      tech: 'Python · FastAPI · OpenAI API · MongoDB',
+      outcome:
+        'Reduced manual support workload by 60% and improved response time significantly.',
+      workflow:
+        'User Query → API → OpenAI Processing → Context Retrieval → Response Generation'
+    },
+    {
+      title: 'AI Content Generator',
+      tag: 'AI Tool',
+      problem:
+        'Content creators needed faster ways to generate blogs, captions, and marketing content.',
+      solution:
+        'Developed an AI-powered content generator with customizable prompts and tone control.',
+      tech: 'React · Node.js · OpenAI API',
+      outcome:
+        'Enabled rapid content creation with consistent quality and tone.',
+      workflow:
+        'User Input → Prompt Engineering → OpenAI API → Generated Content Output'
+    },
+    {
+      title: 'AI Feedback Summarization System',
+      tag: 'AI Automation',
+      problem:
+        'Companies struggled to analyze large volumes of user feedback manually.',
+      solution:
+        'Built an NLP-based summarization tool to extract key insights from feedback data.',
+      tech: 'Python · NLP · OpenAI · FastAPI',
+      outcome:
+        'Improved decision-making by converting raw feedback into actionable insights.',
+      workflow:
+        'Feedback Data → Preprocessing → NLP Model → Summary + Insights'
+    },
+    {
+      title: 'AI Analytics Dashboard',
+      tag: 'AI Dashboard',
+      problem:
+        'Businesses lacked insights from raw data for better decision-making.',
+      solution:
+        'Created a dashboard integrating AI insights with data visualization tools.',
+      tech: 'React · Chart.js · FastAPI · AI APIs',
+      outcome:
+        'Delivered real-time insights and improved business intelligence.',
+      workflow:
+        'Data Source → Backend Processing → AI Analysis → Dashboard Visualization'
+    },{
+  title: 'AI Developer Terminal (CLI Assistant)',
+  tag: 'AI Tool',
+  problem:
+    'Developers needed a fast way to interact with AI for coding help, debugging, and automation without leaving the terminal.',
+  solution:
+    'Built a CLI-based AI assistant using Python that processes user commands and returns intelligent responses using OpenAI API.',
+  tech: 'Python · OpenAI API · CLI · Prompt Engineering',
+  outcome:
+    'Improved developer productivity by enabling instant AI assistance directly in terminal workflows.',
+  workflow:
+    'User Command → CLI Input → OpenAI API → Process Response → Terminal Output'
+},
     {
       title: 'Books Marketplace Platform',
       tag: 'Web Application',
@@ -61,19 +140,9 @@ const CaseStudies = () => {
       outcome:
         'Improved credibility and global client readiness.'
     },
-    {
-      title: 'Startup Landing Website',
-      tag: 'Landing Page',
-      problem:
-        'A startup needed a clean landing page to validate an early-stage idea.',
-      solution:
-        'Created a high-performance landing experience optimized for outreach.',
-      tech: 'React · Vite',
-      outcome:
-        'Enabled faster validation and early traction.'
-    }
+   
   ]
-
+ const visibleCases = showAll ? cases : cases.slice(0, 6)
   return (
     <section style={styles.section} id="casestudies">
       <div style={styles.container}>
@@ -84,37 +153,56 @@ const CaseStudies = () => {
         </p>
 
         <div style={styles.grid}>
-          {cases.map((c, i) => (
+         {visibleCases.map((c, i) => (
             <article key={i} style={styles.card}>
               <div style={styles.header}>
-                <span style={styles.tag}>
-                  {c.tag === 'Mobile Application' && (
-                    <Smartphone size={14} style={{ marginRight: 6 }} />
-                  )}
-                  {c.tag}
-                </span>
-                <ArrowUpRight size={18} style={styles.icon} />
+                <span style={styles.tag}>{c.tag}</span>
               </div>
 
               <h3 style={styles.title}>{c.title}</h3>
 
+              {/* 🔴 PROBLEM */}
               <div style={styles.block}>
-                <strong>Problem</strong>
+                <strong style={styles.label}>Problem</strong>
                 <p>{c.problem}</p>
               </div>
 
+              {/* 🟢 SOLUTION */}
               <div style={styles.block}>
-                <strong>Solution</strong>
+                <strong style={styles.label}>Solution</strong>
                 <p>{c.solution}</p>
               </div>
 
-              <div style={styles.footer}>
-                <span style={styles.tech}>{c.tech}</span>
-                <span style={styles.outcome}>{c.outcome}</span>
+              {/* 🔵 WORKFLOW */}
+              {c.workflow && (
+                <div style={styles.workflowBox}>
+                  <strong style={styles.label}>Workflow</strong>
+                  <p>{c.workflow}</p>
+                </div>
+              )}
+
+              {/* 🟣 TECH STACK */}
+              <div style={styles.techStack}>
+                <strong style={styles.label}>Tech</strong>
+                <p>{c.tech}</p>
+              </div>
+
+              {/* 🟡 OUTCOME */}
+              <div style={styles.outcomeBox}>
+                <strong style={styles.label}>Outcome</strong>
+                <p>{c.outcome}</p>
               </div>
             </article>
           ))}
         </div>
+        <div style={styles.buttonWrapper}>
+  <button
+    style={styles.showButton}
+    onClick={() => setShowAll(!showAll)}
+  >
+    {showAll ? 'Show Less' : 'View All Case Studies'}
+  </button>
+</div>
       </div>
     </section>
   )
@@ -124,6 +212,11 @@ const styles: any = {
   section: {
     padding: '50px 20px',
     backgroundColor: '#FFFFFF'
+  },
+  workflow: {
+    fontSize: '13px',
+    color: '#0ea5e9',
+    fontStyle: 'italic'
   },
   container: {
     maxWidth: '1200px',
@@ -135,6 +228,37 @@ const styles: any = {
     fontWeight: 700,
     marginBottom: '12px'
   },
+  label: {
+  fontSize: '13px',
+  color: '#94a3b8',
+  display: 'block',
+  marginBottom: '4px'
+},
+
+workflowBox: {
+  background: 'rgba(56,189,248,0.1)',
+  border: '1px solid rgba(56,189,248,0.3)',
+  padding: '12px',
+  borderRadius: '10px',
+  marginBottom: '14px',
+  fontSize: '13px',
+  color: '#38bdf8'
+},
+
+techStack: {
+  marginBottom: '12px',
+  fontSize: '13px',
+  color: '#22c55e'
+},
+
+outcomeBox: {
+  background: 'rgba(34,197,94,0.1)',
+  border: '1px solid rgba(34,197,94,0.3)',
+  padding: '12px',
+  borderRadius: '10px',
+  fontSize: '13px',
+  color: '#22c55e'
+},
   subheading: {
     textAlign: 'center',
     maxWidth: '760px',
@@ -148,6 +272,21 @@ const styles: any = {
     gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
     gap: '36px'
   },
+  buttonWrapper: {
+  textAlign: 'center',
+  marginTop: '50px'
+},
+
+showButton: {
+  padding: '14px 28px',
+  background: '#0ea5e9',
+  color: '#fff',
+  border: 'none',
+  borderRadius: '10px',
+  fontWeight: '600',
+  cursor: 'pointer',
+  transition: '0.3s'
+},
 
   card: {
     padding: '32px',

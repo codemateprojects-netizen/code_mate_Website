@@ -1,28 +1,41 @@
+import { motion } from "framer-motion";
+
 const Hero = () => {
   return (
     <section style={styles.hero}>
       <div style={styles.container}>
 
         {/* Eyebrow */}
-        <span style={styles.eyebrow}>
-          Remote-first development studio
-        </span>
+        <motion.span
+          style={styles.eyebrow}
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Full-Stack Developer · AI Solutions Builder
+        </motion.span>
 
         {/* Headline */}
-        <h1 style={styles.title}>
-          Build Smart. <br /> Ship Fast.
-        </h1>
+        <motion.h1
+          style={styles.title}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          Build Scalable Applications <br /> for Real-World Use
+        </motion.h1>
 
         {/* Subtitle */}
-        <p style={styles.subtitle}>
-          We partner with startups and growing businesses to design,
-          build, and scale reliable web & mobile applications
-          with a long-term product mindset.
-        </p>
+        <motion.p
+          style={styles.subtitle}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          I design and develop web, mobile, desktop, and AI-powered applications 
+          with a focus on performance, scalability, and real-world impact.
+        </motion.p>
 
-        {/* Services */}
+        {/* Services Line */}
         <p style={styles.services}>
-          Web Applications · Mobile Apps · Testing · Long-term Support
+          Web Apps · Mobile Apps · Desktop Apps · AI Systems · Full-Stack Development
         </p>
 
         {/* CTA */}
@@ -30,21 +43,28 @@ const Hero = () => {
           <a href="#contact" style={styles.primary}>
             Start a Project
           </a>
-          <a href="#CaseStudies" style={styles.secondary}>
+
+          <a href="#casestudies" style={styles.secondary}>
             View Case Studies
           </a>
         </div>
 
+        {/* Trust Line */}
+        <p style={styles.trust}>
+          Building scalable products with modern technologies
+        </p>
+
       </div>
     </section>
-  )
-}
+  );
+};
+
 
 const styles: any = {
   hero: {
-    padding: '40px 20px 120px',
-    backgroundColor: '#FFFFFF'
-  },
+  padding: '60px 20px 120px',
+  background: 'linear-gradient(to bottom, #ffffff, #f8fafc)'
+},
 
   container: {
     maxWidth: '960px',
@@ -54,66 +74,73 @@ const styles: any = {
 
   /* Small intro line */
   eyebrow: {
-    display: 'inline-block',
-    marginBottom: '16px',
-    fontSize: '13px',
-    fontWeight: 500,
-    color: 'var(--primary)',
-    letterSpacing: '0.4px',
-    textTransform: 'uppercase'
-  },
+  display: 'inline-block',
+  marginBottom: '16px',
+  fontSize: '13px',
+  fontWeight: 600,
+  color: '#0ea5e9',
+  letterSpacing: '0.6px',
+  textTransform: 'uppercase'
+},
+
 
   /* Main headline */
-  title: {
-    fontSize: 'clamp(40px, 6vw, 56px)',
-    fontWeight: 800,
-    lineHeight: '1.08',
-    color: 'var(--secondary)',
-    marginBottom: '26px'
-  },
+ title: {
+  fontSize: 'clamp(42px, 6vw, 60px)',
+  fontWeight: 800,
+  lineHeight: '1.1',
+  marginBottom: '24px',
+  background: 'linear-gradient(90deg, #0ea5e9, #2563eb)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent'
+},
 
-  subtitle: {
-    fontSize: '18px',
-    color: 'var(--text-muted)',
-    maxWidth: '720px',
-    margin: '0 auto 24px',
-    lineHeight: '1.7'
-  },
+subtitle: {
+  fontSize: '18px',
+  color: '#475569',
+  maxWidth: '720px',
+  margin: '0 auto 24px',
+  lineHeight: '1.7'
+},
 
-  services: {
-    fontSize: '14.5px',
-    color: 'var(--text-muted)',
-    marginBottom: '44px'
-  },
+ services: {
+  fontSize: '14.5px',
+  color: '#64748b',
+  marginBottom: '40px'
+},
+buttons: {
+  display: 'flex',
+  justifyContent: 'center',
+  gap: '18px',
+  flexWrap: 'wrap'
+},
 
-  buttons: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '18px',
-    flexWrap: 'wrap'
-  },
+primary: {
+  textDecoration: 'none',
+  padding: '14px 30px',
+  background: 'linear-gradient(90deg, #0ea5e9, #2563eb)',
+  color: '#fff',
+  borderRadius: '12px',
+  fontWeight: 600,
+  fontSize: '15px',
+  boxShadow: '0 10px 25px rgba(14,165,233,0.3)'
+},
 
-  primary: {
-    textDecoration: 'none',
-    padding: '14px 30px',
-    backgroundColor: 'var(--primary)',
-    color: '#FFFFFF',
-    borderRadius: '12px',
-    fontWeight: 600,
-    fontSize: '15px',
-    transition: 'transform 0.2s ease, box-shadow 0.2s ease'
-  },
+secondary: {
+  textDecoration: 'none',
+  padding: '14px 30px',
+  border: '1px solid #e2e8f0',
+  color: '#0f172a',
+  borderRadius: '12px',
+  fontWeight: 600,
+  fontSize: '15px'
+},
 
-  secondary: {
-    textDecoration: 'none',
-    padding: '14px 30px',
-    border: '1px solid var(--border-light)',
-    color: 'var(--secondary)',
-    borderRadius: '12px',
-    fontWeight: 600,
-    fontSize: '15px',
-    transition: 'background-color 0.2s ease'
-  }
+trust: {
+  marginTop: '30px',
+  fontSize: '13px',
+  color: '#94a3b8'
+}
 }
 
 export default Hero
