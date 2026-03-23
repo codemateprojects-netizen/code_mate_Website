@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowUpRight, Smartphone } from 'lucide-react'
+
 
 const CaseStudies = () => {
   const [showAll, setShowAll] = useState(false)
