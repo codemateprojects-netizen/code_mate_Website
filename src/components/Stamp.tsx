@@ -47,7 +47,7 @@ const Stamp = () => {
         letterSpacing="2.4"
       >
         <textPath href="#topCurve" startOffset="50%" textAnchor="middle">
-          CODEMATE
+          SYJENCODE
         </textPath>
       </text>
 
