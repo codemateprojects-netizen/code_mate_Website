@@ -1,6 +1,6 @@
 import logo from '../assets/logo_new_syj.png'
 import Stamp from './Stamp'
-import { Mail, Code2, Briefcase, Share2 } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -15,11 +15,11 @@ const Footer = () => {
           {/* Brand */}
           <div style={styles.brand}>
             <div style={styles.logoWrap}>
-              <img src={logo} alt="SyjenCode" style={styles.logo} />
+              <img src={logo} alt="SYJEN CODE" style={styles.logo} />
             </div>
             <div>
-              <p style={styles.brandName}>SyjenCode</p>
-              <p style={styles.tagline}>Build Smart. Ship Fast.</p>
+              <p style={styles.brandName}>SYJEN CODE</p>
+              <p style={styles.tagline}>Build Smart. Deliver Beyond.</p>
             </div>
           </div>
 
@@ -28,30 +28,28 @@ const Footer = () => {
             <p style={styles.navHeading}>Company</p>
             <nav style={styles.links}>
               <a href="#services" style={styles.link}>Services</a>
-              <a href="#casestudies" style={styles.link}>Work</a>
-              <a href="#contact" style={styles.link}>Contact</a>
+              <a href="#solutions" style={styles.link}>Solutions</a>
+              <a href="#casestudies" style={styles.link}>Our Work</a>
+              <a href="#process" style={styles.link}>Process</a>
+              <a href="#about" style={styles.link}>About</a>
               <a href="#faq" style={styles.link}>FAQ</a>
+              <a href="#contact" style={styles.link}>Contact</a>
+              <a href="/privacy" style={styles.link}>Privacy Policy</a>
+              <a href="/terms" style={styles.link}>Terms</a>
             </nav>
           </div>
 
-          {/* Contact + Social */}
+          {/* Contact */}
           <div style={styles.contactGroup}>
             <p style={styles.navHeading}>Get In Touch</p>
-            <a href="mailto:codemate.projects@gmail.com" style={styles.emailLink}>
+            <a href="mailto:syjencode@gmail.com" style={styles.emailLink}>
               <Mail size={14} />
-              codemate.projects@gmail.com
+              syjencode@gmail.com
             </a>
-            <div style={styles.socials}>
-              <a href="#" style={styles.socialIcon} aria-label="GitHub">
-                <Code2 size={17} />
-              </a>
-              <a href="#" style={styles.socialIcon} aria-label="LinkedIn">
-                <Briefcase size={17} />
-              </a>
-              <a href="#" style={styles.socialIcon} aria-label="Twitter">
-                <Share2 size={17} />
-              </a>
-            </div>
+            <a href="tel:8790899459" style={styles.emailLink}>
+              <Phone size={14} />
+              8790899459
+            </a>
           </div>
 
         </div>
@@ -62,7 +60,7 @@ const Footer = () => {
         {/* ── Bottom Row ── */}
         <div className="footer-bottom-row" style={styles.bottomRow}>
           <p style={styles.copy}>
-            © {new Date().getFullYear()} <span style={styles.highlight}>SyjenCode</span>. All rights reserved.
+            © {new Date().getFullYear()} <span style={styles.highlight}>SYJEN CODE</span>. All rights reserved.
           </p>
           <p style={styles.copy}>
             Remote-first · Worldwide
@@ -189,26 +187,6 @@ const styles: any = {
     color: '#64748b',
     textDecoration: 'none',
     transition: 'color 0.2s ease'
-  },
-
-  socials: {
-    display: 'flex',
-    gap: '10px',
-    marginTop: '4px'
-  },
-
-  socialIcon: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '34px',
-    height: '34px',
-    borderRadius: '8px',
-    backgroundColor: 'rgba(255,255,255,0.06)',
-    border: '1px solid rgba(255,255,255,0.08)',
-    color: '#64748b',
-    textDecoration: 'none',
-    transition: 'all 0.2s ease'
   },
 
   /* Divider */

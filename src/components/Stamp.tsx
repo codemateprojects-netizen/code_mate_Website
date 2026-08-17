@@ -72,7 +72,7 @@ const Stamp = () => {
         letterSpacing="1.6"
       >
         <textPath href="#bottomCurve" startOffset="50%" textAnchor="middle">
-          BUILD SMART · SHIP FAST
+          BUILD SMART · DELIVER BEYOND
         </textPath>
       </text>
     </svg>

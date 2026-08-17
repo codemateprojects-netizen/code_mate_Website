@@ -3,6 +3,8 @@
   --primary: #2563EB;
   --primary-hover: #1d4ed8;
   --secondary: #0F172A;
+  --accent-orange: #F97316;
+  --accent-orange-dark: #C2410C;
   --bg-light: #F8FAFC;
   --border-light: #E2E8F0;
   --text-muted: #64748B;
@@ -79,6 +81,10 @@ input::placeholder { color: #9ca3af; }
 ───────────────────────────────────── */
 @media (max-width: 768px) {
   .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+}
+
+@media (max-width: 480px) {
+  .cf-row { grid-template-columns: 1fr !important; }
 }
 
 /* ─────────────────────────────────────

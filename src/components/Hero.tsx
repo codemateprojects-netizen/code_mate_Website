@@ -39,7 +39,7 @@ const Hero = () => {
   }, [])
 
   return (
-    <section style={styles.hero}>
+    <section style={styles.hero} id="home">
       <div style={styles.dotGrid} />
 
       {/* Aurora blobs — fluid x/y/scale motion */}
@@ -93,7 +93,7 @@ const Hero = () => {
               transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
             />
             <Zap size={12} strokeWidth={2.5} style={{ color: '#2563eb', flexShrink: 0 }} />
-            Full-Stack Developer · AI Solutions Builder
+            Software Development Partner · Web · Mobile · AI
           </span>
         </motion.div>
 
@@ -119,7 +119,7 @@ const Hero = () => {
               </motion.span>
             )}
           </AnimatePresence>
-          <br />for Real-World Impact
+          <br />With Confidence
         </motion.h1>
 
         {/* Animated gradient underline */}
@@ -137,8 +137,8 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.25 }}
         >
-          I design and develop web, mobile, desktop, and AI-powered applications
-          with a focus on performance, scalability, and real-world impact.
+          From idea to production, SYJEN CODE helps startups and businesses build
+          reliable web, mobile, ecommerce, and AI-powered solutions.
         </motion.p>
 
         {/* CTA buttons */}
@@ -171,7 +171,7 @@ const Hero = () => {
             whileHover={{ scale: 1.02, borderColor: '#93c5fd', color: '#1d4ed8' }}
             whileTap={{ scale: 0.98 }}
           >
-            View Case Studies
+            View Our Work
           </motion.a>
         </motion.div>
 

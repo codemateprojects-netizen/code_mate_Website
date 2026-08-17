@@ -4,28 +4,48 @@ import { Plus, MessageCircle } from 'lucide-react'
 
 const faqs = [
   {
+    q: 'What type of projects do you build?',
+    a: 'We work on web applications, mobile apps, ecommerce platforms, AI solutions, and backend/API systems — for startups, small and medium businesses, and agencies.',
+  },
+  {
+    q: 'Can you build an MVP from an idea?',
+    a: 'Yes. We regularly take founders from an early idea through product planning, UI/UX, development, testing, and launch — with a scope that fits an MVP budget and timeline.',
+  },
+  {
     q: 'Do you work with international clients?',
-    a: 'Yes. SyjenCode is a remote-first studio working with clients worldwide across the US, UK, Europe, Australia, and Southeast Asia. All communication is async-friendly.',
+    a: 'Yes. SYJEN CODE works with clients worldwide through online discovery meetings, clear documentation, milestone-based development, and remote deployment and support.',
   },
   {
-    q: 'How do you manage project communication?',
-    a: 'We provide clear timelines, regular progress updates via email or preferred tools, and structured check-ins at every milestone to keep you fully informed.',
+    q: 'How do you estimate project cost?',
+    a: 'Cost depends on scope, features, and complexity. After an initial discussion of your requirements, we share a clear estimate and milestone breakdown before any work begins.',
   },
   {
-    q: 'Can you sign an NDA before starting?',
-    a: 'Absolutely. We are fully NDA-friendly — confidentiality agreements are signed before any project details are shared or work begins.',
+    q: 'How long does development take?',
+    a: 'Timelines depend on scope. A focused MVP or landing page can take a few weeks; a full-stack platform or AI system typically takes longer. We share a realistic estimate upfront.',
+  },
+  {
+    q: 'Do you provide UI/UX design?',
+    a: 'Yes. UI/UX is part of our standard process — we design the interface and user experience before development begins, not as an afterthought.',
+  },
+  {
+    q: 'Can you work with an existing development team?',
+    a: 'Yes. We can join as a technical partner alongside your existing team, taking ownership of specific features, modules, or the full build.',
+  },
+  {
+    q: 'Can you maintain an existing application?',
+    a: 'Yes. We take over maintenance and further development of applications already in production, including bug fixes and new features.',
+  },
+  {
+    q: 'Do you provide ecommerce development?',
+    a: 'Yes. We build custom ecommerce platforms end to end — catalogues, carts, payments, orders, and admin management.',
+  },
+  {
+    q: 'Do you provide AI integrations?',
+    a: 'Yes. We integrate AI chatbots, automation, and AI-powered workflows into new or existing products.',
   },
   {
     q: 'Do you provide post-launch support?',
-    a: 'Yes. We offer dedicated maintenance and support packages after launch — bug fixes, performance monitoring, updates, and feature additions.',
-  },
-  {
-    q: 'What is a typical project timeline?',
-    a: 'Timelines depend on scope. A landing page takes 1–2 weeks, a full-stack web app 3–6 weeks, and an AI system 4–8 weeks. We share a clear estimate before starting.',
-  },
-  {
-    q: 'Do you work with early-stage startups?',
-    a: 'Yes, and we enjoy it. We understand startup constraints — speed, cost, and scalability. We help you build an MVP that can grow with your product.',
+    a: 'Yes. Support doesn’t necessarily end at launch — we offer maintenance, bug fixes, and feature updates for ongoing engagements.',
   },
 ]
 

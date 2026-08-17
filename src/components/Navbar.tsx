@@ -5,10 +5,14 @@ import SearchModal from './SearchModal'
 import ToggleModal from './ToggleModal'
 
 const NAV_ITEMS = [
-  { id: 'services',    label: 'Services' },
-  { id: 'casestudies', label: 'Work'     },
-  { id: 'faq',         label: 'FAQ'      },
-  { id: 'contact',     label: 'Contact'  },
+  { id: 'home',        label: 'Home'      },
+  { id: 'services',    label: 'Services'  },
+  { id: 'solutions',   label: 'Solutions' },
+  { id: 'casestudies', label: 'Our Work'  },
+  { id: 'process',     label: 'Process'   },
+  { id: 'about',       label: 'About'     },
+  { id: 'faq',         label: 'FAQ'       },
+  { id: 'contact',     label: 'Contact'   },
 ]
 
 const Navbar = () => {
@@ -63,7 +67,7 @@ const Navbar = () => {
 
           {/* Logo */}
           <a href="#" style={styles.logoLink} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img src={logo} alt="SyjenCode" style={styles.logo} />
+            <img src={logo} alt="SYJEN CODE" style={styles.logo} />
           </a>
 
           {/* Desktop links */}
@@ -202,11 +206,12 @@ const styles: any = {
     alignItems: 'center',
     gap: '3px',
     textDecoration: 'none',
-    fontSize: '14px',
+    fontSize: '13.5px',
     fontWeight: 500,
     color: '#64748b',
-    padding: '6px 12px',
+    padding: '6px 9px',
     borderRadius: '8px',
+    whiteSpace: 'nowrap',
     transition: 'color 0.2s ease, background-color 0.2s ease'
   },
 

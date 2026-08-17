@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Lock, Mail } from 'lucide-react'
+import { Lock, Mail, Bot, Sparkles, Zap, BarChart3, Globe, Smartphone, Briefcase, Rocket, ArrowRight } from 'lucide-react'
 
-const tagMeta: Record<string, { bg: string; color: string; border: string }> = {
-  'AI Application':     { bg: '#eff6ff', color: '#2563eb', border: '#bfdbfe' },
-  'AI Tool':            { bg: '#f5f3ff', color: '#7c3aed', border: '#ddd6fe' },
-  'AI Automation':      { bg: '#fffbeb', color: '#b45309', border: '#fde68a' },
-  'AI Dashboard':       { bg: '#ecfdf5', color: '#059669', border: '#a7f3d0' },
-  'Web Application':    { bg: '#e0f2fe', color: '#0284c7', border: '#bae6fd' },
-  'Web Platform':       { bg: '#e0f2fe', color: '#0284c7', border: '#bae6fd' },
-  'Mobile Application': { bg: '#fdf4ff', color: '#a21caf', border: '#f0abfc' },
-  'Business Website':   { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa' },
-  'Landing Page':       { bg: '#f0fdf4', color: '#15803d', border: '#bbf7d0' },
+const tagMeta: Record<string, { bg: string; color: string; border: string; gradient: string; Icon: typeof Bot }> = {
+  'AI Application':     { bg: '#eff6ff', color: '#2563eb', border: '#bfdbfe', gradient: 'linear-gradient(135deg, #2563eb, #1e3a8a)', Icon: Bot },
+  'AI Tool':            { bg: '#f5f3ff', color: '#7c3aed', border: '#ddd6fe', gradient: 'linear-gradient(135deg, #7c3aed, #4c1d95)', Icon: Sparkles },
+  'AI Automation':      { bg: '#fffbeb', color: '#b45309', border: '#fde68a', gradient: 'linear-gradient(135deg, #f97316, #b45309)', Icon: Zap },
+  'AI Dashboard':       { bg: '#ecfdf5', color: '#059669', border: '#a7f3d0', gradient: 'linear-gradient(135deg, #059669, #065f46)', Icon: BarChart3 },
+  'Web Application':    { bg: '#e0f2fe', color: '#0284c7', border: '#bae6fd', gradient: 'linear-gradient(135deg, #0ea5e9, #0369a1)', Icon: Globe },
+  'Web Platform':       { bg: '#e0f2fe', color: '#0284c7', border: '#bae6fd', gradient: 'linear-gradient(135deg, #0ea5e9, #0369a1)', Icon: Globe },
+  'Mobile Application': { bg: '#fdf4ff', color: '#a21caf', border: '#f0abfc', gradient: 'linear-gradient(135deg, #a21caf, #701a75)', Icon: Smartphone },
+  'Business Website':   { bg: '#fff7ed', color: '#c2410c', border: '#fed7aa', gradient: 'linear-gradient(135deg, #f97316, #c2410c)', Icon: Briefcase },
+  'Landing Page':       { bg: '#f0fdf4', color: '#15803d', border: '#bbf7d0', gradient: 'linear-gradient(135deg, #16a34a, #15803d)', Icon: Rocket },
 }
 
 const FILTERS = ['All', 'AI', 'Web', 'Mobile']
@@ -25,25 +25,31 @@ const cases = [
   {
     title: 'Startup Landing Website',
     tag: 'Landing Page',
+    industry: 'Startups',
     problem: 'A startup needed a clean landing page to validate an early-stage idea.',
     solution: 'Created a high-performance landing experience optimized for outreach.',
+    features: ['Fast-loading landing experience', 'Outreach-optimized layout', 'Lightweight, no-bloat build'],
     tech: 'React · Vite',
     outcome: 'Enabled faster validation and early traction.'
   },
   {
     title: 'AI Customer Support Chatbot',
     tag: 'AI Application',
+    industry: 'Customer Support',
     problem: 'Businesses needed automated customer support to handle repetitive queries and reduce response time.',
     solution: 'Built an AI chatbot using OpenAI API with context handling and FAQ-based retrieval system.',
+    features: ['Context-aware conversation handling', 'FAQ-based retrieval system', 'OpenAI API integration'],
     tech: 'Python · FastAPI · OpenAI API · MongoDB',
-    outcome: 'Reduced manual support workload by 60% and improved response time significantly.',
+    outcome: 'Reduced manual support workload and improved response times for common queries.',
     workflow: 'User Query → API → OpenAI Processing → Context Retrieval → Response'
   },
   {
     title: 'AI Content Generator',
     tag: 'AI Tool',
+    industry: 'Marketing & Content',
     problem: 'Content creators needed faster ways to generate blogs, captions, and marketing content.',
     solution: 'Developed an AI-powered content generator with customizable prompts and tone control.',
+    features: ['Customizable prompts', 'Tone control', 'Rapid content generation'],
     tech: 'React · Node.js · OpenAI API',
     outcome: 'Enabled rapid content creation with consistent quality and tone.',
     workflow: 'User Input → Prompt Engineering → OpenAI API → Content Output'
@@ -51,8 +57,10 @@ const cases = [
   {
     title: 'AI Feedback Summarization System',
     tag: 'AI Automation',
+    industry: 'Business Intelligence',
     problem: 'Companies struggled to analyze large volumes of user feedback manually.',
     solution: 'Built an NLP-based summarization tool to extract key insights from feedback data.',
+    features: ['NLP-based summarization', 'Key insight extraction', 'Automated feedback processing'],
     tech: 'Python · NLP · OpenAI · FastAPI',
     outcome: 'Improved decision-making by converting raw feedback into actionable insights.',
     workflow: 'Feedback Data → Preprocessing → NLP Model → Summary + Insights'
@@ -60,8 +68,10 @@ const cases = [
   {
     title: 'AI Analytics Dashboard',
     tag: 'AI Dashboard',
+    industry: 'Business Intelligence',
     problem: 'Businesses lacked insights from raw data for better decision-making.',
     solution: 'Created a dashboard integrating AI insights with data visualization tools.',
+    features: ['Real-time data visualization', 'AI-driven insights', 'Chart.js dashboard UI'],
     tech: 'React · Chart.js · FastAPI · AI APIs',
     outcome: 'Delivered real-time insights and improved business intelligence.',
     workflow: 'Data Source → Backend → AI Analysis → Dashboard Visualization'
@@ -69,8 +79,10 @@ const cases = [
   {
     title: 'AI Developer Terminal (CLI Assistant)',
     tag: 'AI Tool',
+    industry: 'Developer Tools',
     problem: 'Developers needed fast AI help for coding and debugging without leaving the terminal.',
     solution: 'Built a CLI-based AI assistant using Python with intelligent response processing.',
+    features: ['CLI-based AI assistant', 'Instant coding help', 'Terminal-native workflow'],
     tech: 'Python · OpenAI API · CLI · Prompt Engineering',
     outcome: 'Improved developer productivity by enabling instant AI assistance in terminal workflows.',
     workflow: 'User Command → CLI Input → OpenAI API → Terminal Output'
@@ -78,40 +90,50 @@ const cases = [
   {
     title: 'Books Marketplace Platform',
     tag: 'Web Application',
+    industry: 'Ecommerce',
     problem: 'Independent sellers needed a simple, scalable way to sell books online.',
     solution: 'Designed and developed a secure marketplace with authentication and modular architecture.',
+    features: ['User authentication', 'Product listings', 'Secure transaction flow'],
     tech: 'React · Node.js',
     outcome: 'Production-ready MVP with scalability and long-term maintainability.'
   },
   {
     title: 'Service Booking Platform',
     tag: 'Web Platform',
+    industry: 'Local Services',
     problem: 'Local service providers needed a digital platform to manage bookings and clients.',
     solution: 'Built a service-based platform with clean workflows and user management.',
+    features: ['Booking management', 'Client workflows', 'Multi-category support'],
     tech: 'React · Node.js',
     outcome: 'Ready-to-scale foundation supporting multiple service categories.'
   },
   {
     title: 'Creator Support Mobile App',
     tag: 'Mobile Application',
+    industry: 'Creator Economy',
     problem: 'Creators needed a mobile-first way to share content and connect with supporters.',
     solution: 'Developed a cross-platform mobile app with clean UI, authentication, and scalable architecture.',
+    features: ['Cross-platform mobile UI', 'Authentication', 'Scalable architecture'],
     tech: 'React Native · TypeScript',
     outcome: 'Mobile-ready product designed for future feature expansion.'
   },
   {
     title: 'Business Management Mobile App',
     tag: 'Mobile Application',
+    industry: 'SMB Operations',
     problem: 'Small businesses required a mobile app to manage daily operations on the go.',
     solution: 'Built a lightweight, performance-focused mobile application with intuitive navigation.',
+    features: ['Lightweight mobile UI', 'API integration', 'On-the-go operations management'],
     tech: 'React Native · API Integration',
     outcome: 'Improved accessibility and mobile productivity.'
   },
   {
     title: 'Digital Marketing Portfolio',
     tag: 'Business Website',
+    industry: 'Professional Services',
     problem: 'A marketing consultant needed a professional online presence to attract international clients.',
     solution: 'Developed a fast, conversion-focused website with clear messaging.',
+    features: ['Conversion-focused design', 'Fast performance', 'Clear messaging'],
     tech: 'React · Vite',
     outcome: 'Improved credibility and global client readiness.'
   },
@@ -240,18 +262,20 @@ const CaseStudies = () => {
                   onHoverEnd={() => setHovered(null)}
                 >
 
-                  {/* Tag + number */}
+                  {/* Visual header */}
+                  <div style={{ ...styles.banner, background: meta.gradient }}>
+                    <meta.Icon size={30} strokeWidth={1.6} style={{ color: 'rgba(255,255,255,0.92)' }} />
+                    <span style={styles.bannerNum}>{String(i + 1).padStart(2, '0')}</span>
+                  </div>
+
+                  <div style={styles.cardBody}>
+
+                  {/* Tag + industry */}
                   <div style={styles.cardTop}>
                     <span style={{ ...styles.tag, backgroundColor: meta.bg, color: meta.color, borderColor: meta.border }}>
                       {c.tag}
                     </span>
-                    <motion.span
-                      style={styles.cardNum}
-                      animate={{ opacity: isHov ? 0.5 : 0.2, color: isHov ? meta.color : '#94a3b8' }}
-                      transition={{ duration: 0.18 }}
-                    >
-                      {String(i + 1).padStart(2, '0')}
-                    </motion.span>
+                    <span style={styles.industry}>{c.industry}</span>
                   </div>
 
                   {/* Title */}
@@ -263,9 +287,9 @@ const CaseStudies = () => {
                     {c.title}
                   </motion.h3>
 
-                  {/* Problem */}
+                  {/* Challenge */}
                   <div style={styles.block}>
-                    <span style={styles.label}>Problem</span>
+                    <span style={styles.label}>Challenge</span>
                     <p style={styles.blockText}>{c.problem}</p>
                   </div>
 
@@ -294,14 +318,24 @@ const CaseStudies = () => {
                     </div>
                   )}
 
-                  {/* Stack */}
+                  {/* Technology */}
                   <div style={styles.block}>
-                    <span style={styles.label}>Stack</span>
+                    <span style={styles.label}>Technology</span>
                     <div style={styles.techRow}>
                       {techs.map((t, ti) => (
                         <span key={ti} style={styles.techPill}>{t}</span>
                       ))}
                     </div>
+                  </div>
+
+                  {/* Key Features */}
+                  <div style={styles.block}>
+                    <span style={styles.label}>Key Features</span>
+                    <ul style={styles.featuresList}>
+                      {c.features.map((f, fi) => (
+                        <li key={fi} style={styles.featureItem}>{f}</li>
+                      ))}
+                    </ul>
                   </div>
 
                   {/* Outcome */}
@@ -312,6 +346,18 @@ const CaseStudies = () => {
                     </p>
                   </div>
 
+                  {/* View Case Study CTA */}
+                  <motion.a
+                    href="#contact"
+                    style={{ ...styles.viewCta, color: meta.color }}
+                    animate={{ opacity: isHov ? 1 : 0.6, x: isHov ? 3 : 0 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    <span>View Case Study</span>
+                    <ArrowRight size={13} strokeWidth={2.5} />
+                  </motion.a>
+
+                  </div>
                 </motion.article>
               )
             })}
@@ -497,17 +543,44 @@ const styles: any = {
   },
 
   card: {
-    padding: '28px',
     borderRadius: '16px',
     backgroundColor: '#ffffff',
     display: 'flex',
     flexDirection: 'column',
+    overflow: 'hidden',
     cursor: 'default',
+  },
+
+  banner: {
+    position: 'relative',
+    height: '84px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+
+  bannerNum: {
+    position: 'absolute',
+    bottom: '8px',
+    right: '14px',
+    fontSize: '13px',
+    fontWeight: 700,
+    fontFamily: 'monospace',
+    color: 'rgba(255,255,255,0.65)',
+    letterSpacing: '0.5px',
+  },
+
+  cardBody: {
+    padding: '24px 28px 28px',
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
   },
 
   cardTop: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     justifyContent: 'space-between',
     marginBottom: '14px',
   },
@@ -519,6 +592,12 @@ const styles: any = {
     borderRadius: '999px',
     border: '1px solid',
     fontWeight: 600,
+  },
+
+  industry: {
+    fontSize: '11.5px',
+    fontWeight: 600,
+    color: '#94a3b8',
   },
 
   cardNum: {
@@ -604,6 +683,32 @@ const styles: any = {
     backgroundColor: '#f1f5f9',
     color: '#475569',
     border: '1px solid rgba(226,232,240,0.9)',
+  },
+
+  /* Key Features */
+  featuresList: {
+    margin: 0,
+    paddingLeft: '18px',
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '3px',
+  },
+
+  featureItem: {
+    fontSize: '13.5px',
+    color: '#64748b',
+    lineHeight: '1.6',
+  },
+
+  /* View Case Study */
+  viewCta: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '5px',
+    fontSize: '13px',
+    fontWeight: 600,
+    textDecoration: 'none',
+    marginTop: '14px',
   },
 
   /* Outcome */

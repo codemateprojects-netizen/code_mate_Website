@@ -1,70 +1,78 @@
 import { useState } from 'react'
-import { Brain, Bot, Zap, Server, Globe, Smartphone, TestTube2, Headphones, ArrowUpRight, ArrowRight } from 'lucide-react'
+import { Globe, Smartphone, ShoppingCart, Brain, Server, Cloud, PenTool, TestTube2, ArrowUpRight, ArrowRight } from 'lucide-react'
 import { motion } from 'framer-motion'
 
 const services = [
   {
-    Icon: Brain,
-    title: 'AI Application Development',
-    desc: 'Build intelligent applications using OpenAI, automation workflows, and scalable backend systems.',
+    Icon: Globe,
+    title: 'Web Application Development',
+    desc: 'Business websites, custom web applications, SaaS platforms, dashboards, and customer portals.',
+    tech: ['React', 'Node.js', 'PostgreSQL'],
     iconBg: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
     iconColor: '#2563eb',
     num: '01',
   },
   {
-    Icon: Bot,
-    title: 'AI SaaS & Web Platforms',
-    desc: 'Develop full-stack AI-powered SaaS products with clean UI, APIs, and production-ready architecture.',
-    iconBg: 'linear-gradient(135deg, #ede9fe, #ddd6fe)',
-    iconColor: '#7c3aed',
+    Icon: Smartphone,
+    title: 'Mobile Application Development',
+    desc: 'Android, iOS, and cross-platform mobile applications using React Native and modern backends.',
+    tech: ['React Native', 'TypeScript'],
+    iconBg: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
+    iconColor: '#1e3a8a',
     num: '02',
   },
   {
-    Icon: Zap,
-    title: 'AI Automation & Integrations',
-    desc: 'Automate workflows using APIs, LLMs, and backend logic to reduce manual work and improve efficiency.',
-    iconBg: 'linear-gradient(135deg, #fef9c3, #fde68a)',
+    Icon: ShoppingCart,
+    title: 'Ecommerce Development',
+    desc: 'Custom ecommerce platforms with catalogues, carts, payments, orders, and admin management.',
+    tech: ['React', 'Node.js', 'REST APIs'],
+    iconBg: 'linear-gradient(135deg, #ffedd5, #fed7aa)',
     iconColor: '#d97706',
     num: '03',
   },
   {
-    Icon: Server,
-    title: 'AI Maintenance & Scaling',
-    desc: 'Optimize AI systems, improve performance, and scale infrastructure for real-world usage.',
-    iconBg: 'linear-gradient(135deg, #dcfce7, #bbf7d0)',
-    iconColor: '#16a34a',
+    Icon: Brain,
+    title: 'AI Solutions',
+    desc: 'AI chatbots, automation, API integrations, intelligent search, and document processing.',
+    tech: ['AI APIs', 'Automation', 'Python'],
+    iconBg: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+    iconColor: '#2563eb',
     num: '04',
   },
   {
-    Icon: Globe,
-    title: 'Web Development',
-    desc: 'Modern, fast, and scalable web applications built with a clean, maintainable architecture.',
-    iconBg: 'linear-gradient(135deg, #e0f2fe, #bae6fd)',
-    iconColor: '#0284c7',
+    Icon: Server,
+    title: 'Backend & API Development',
+    desc: 'Secure APIs, authentication, databases, payment integrations, and scalable backend architecture.',
+    tech: ['Node.js', 'Express', 'PostgreSQL'],
+    iconBg: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
+    iconColor: '#1e3a8a',
     num: '05',
   },
   {
-    Icon: Smartphone,
-    title: 'Mobile App Development',
-    desc: 'Cross-platform mobile applications using React Native, designed for performance and usability.',
-    iconBg: 'linear-gradient(135deg, #fce7f3, #fbcfe8)',
-    iconColor: '#db2777',
+    Icon: Cloud,
+    title: 'Cloud & DevOps',
+    desc: 'AWS deployment, Docker, CI/CD, SSL, production servers, and infrastructure monitoring.',
+    tech: ['AWS', 'Docker', 'CI/CD'],
+    iconBg: 'linear-gradient(135deg, #ffedd5, #fed7aa)',
+    iconColor: '#d97706',
     num: '06',
   },
   {
-    Icon: TestTube2,
-    title: 'Testing & Bug Fixing',
-    desc: 'Manual testing, bug fixing, and performance improvements to ensure reliability.',
-    iconBg: 'linear-gradient(135deg, #ffedd5, #fed7aa)',
-    iconColor: '#ea580c',
+    Icon: PenTool,
+    title: 'UI/UX & Product Development',
+    desc: 'Modern responsive interfaces, dashboards, mobile UI, MVP development, and product refinement.',
+    tech: ['React', 'TypeScript', 'Vite'],
+    iconBg: 'linear-gradient(135deg, #dbeafe, #bfdbfe)',
+    iconColor: '#2563eb',
     num: '07',
   },
   {
-    Icon: Headphones,
-    title: 'Maintenance & Support',
-    desc: 'Ongoing support, updates, and feature enhancements for long-term success.',
-    iconBg: 'linear-gradient(135deg, #f0fdf4, #dcfce7)',
-    iconColor: '#15803d',
+    Icon: TestTube2,
+    title: 'Testing & Maintenance',
+    desc: 'Web, mobile, and API testing, bug fixing, performance optimization, and post-launch support.',
+    tech: ['REST APIs', 'CI/CD'],
+    iconBg: 'linear-gradient(135deg, #e0e7ff, #c7d2fe)',
+    iconColor: '#1e3a8a',
     num: '08',
   },
 ]
@@ -87,8 +95,8 @@ const Services = () => {
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
         >
-          <span style={styles.eyebrow}>What I offer</span>
-          <h2 style={styles.heading}>Services</h2>
+          <span style={styles.eyebrow}>What We Offer</span>
+          <h2 style={styles.heading}>What We Build</h2>
           <p style={styles.subheading}>
             End-to-end development services focused on quality, scalability,
             and long-term product success.
@@ -145,6 +153,13 @@ const Services = () => {
                 {/* Desc */}
                 <p style={styles.desc}>{svc.desc}</p>
 
+                {/* Tech highlights */}
+                <div style={styles.techRow}>
+                  {svc.tech.map((t, ti) => (
+                    <span key={ti} style={styles.techPill}>{t}</span>
+                  ))}
+                </div>
+
                 {/* Hover footer */}
                 <motion.div
                   style={{ ...styles.learnMore, color: svc.iconColor }}
@@ -172,11 +187,11 @@ const Services = () => {
           <div style={styles.ctaOrb2} />
 
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <span style={styles.ctaBadge}>Ready to start?</span>
-            <h3 style={styles.ctaTitle}>Have an idea or need an AI solution?</h3>
+            <span style={styles.ctaBadge}>Not sure which service you need?</span>
+            <h3 style={styles.ctaTitle}>Have a project in mind?</h3>
             <p style={styles.ctaText}>
-              I build AI-powered applications, automation systems, and scalable products.
-              Let's work together to bring your idea to life.
+              We build web, mobile, ecommerce, and AI-powered products end to end.
+              Tell us what you're building and we'll help you figure out the next step.
             </p>
             <motion.a
               href="#contact"
@@ -184,7 +199,7 @@ const Services = () => {
               whileHover={{ scale: 1.04, boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}
               whileTap={{ scale: 0.97 }}
             >
-              <span>Start a Conversation</span>
+              <span>Discuss Your Idea</span>
               <ArrowRight size={15} strokeWidth={2.5} />
             </motion.a>
           </div>
@@ -315,6 +330,23 @@ const styles: any = {
     lineHeight: '1.65',
     color: '#64748b',
     margin: '0 0 14px',
+  },
+
+  techRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: '6px',
+    marginBottom: '14px',
+  },
+
+  techPill: {
+    padding: '3px 9px',
+    borderRadius: '6px',
+    fontSize: '11.5px',
+    fontWeight: 600,
+    backgroundColor: '#f1f5f9',
+    color: '#475569',
+    border: '1px solid rgba(226,232,240,0.9)',
   },
 
   learnMore: {

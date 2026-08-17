@@ -1,7 +1,7 @@
 const techs = [
-  'React', 'TypeScript', 'Python', 'FastAPI', 'OpenAI API',
-  'React Native', 'Node.js', 'MongoDB', 'Next.js', 'Docker',
-  'PostgreSQL', 'Vite', 'AWS', 'Prompt Engineering', 'REST APIs',
+  'React', 'React Native', 'TypeScript', 'JavaScript', 'Vite',
+  'Node.js', 'Express', 'REST APIs', 'PostgreSQL', 'MongoDB',
+  'AWS', 'Docker', 'Linux', 'CI/CD', 'Python', 'FastAPI', 'OpenAI API',
 ]
 
 const TechStrip = () => {
