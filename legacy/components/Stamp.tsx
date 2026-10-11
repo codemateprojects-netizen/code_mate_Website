@@ -1,10 +1,14 @@
-const Stamp = () => {
+type Props = {
+  size?: number
+}
+
+const Stamp = ({ size = 120 }: Props) => {
   const GREEN = '#16a34a' // trust green
 
   return (
     <svg
-      width="120"
-      height="120"
+      width={size}
+      height={size}
       viewBox="0 0 200 200"
       style={{
         opacity: 0.85,

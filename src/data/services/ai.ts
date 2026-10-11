@@ -1,0 +1,280 @@
+import { BrainCircuit, DatabaseZap, Workflow } from 'lucide-react'
+import type { ServiceDetail } from './types'
+
+export const aiServices: ServiceDetail[] = [
+  {
+    slug: 'ai-solutions',
+    name: 'AI Solutions',
+    shortName: 'AI Solutions',
+    group: 'ai',
+    icon: BrainCircuit,
+    summary: 'Generative AI, LLM integration, machine learning, and AI automation designed around measurable business tasks.',
+    seo: {
+      title: 'AI Development Services',
+      description:
+        'AI development services: generative AI applications, LLM integration, RAG, AI chatbots, AI agents, intelligent document processing, machine learning, NLP, computer vision, and LLMOps.',
+    },
+    hero: {
+      eyebrow: 'AI Solutions',
+      title: 'Turning Artificial Intelligence Into Practical Business Solutions.',
+      description:
+        'We help businesses identify where AI genuinely helps, then design, build, evaluate, and operate AI systems that fit into real workflows — with the guardrails production use requires.',
+    },
+    problem: {
+      title: 'From AI curiosity to AI that works',
+      body: 'Many AI initiatives stall after an impressive demo. The hard parts are connecting models to your data, controlling cost and quality, keeping information secure, and proving value.',
+      points: [
+        'Prototypes that never reach production',
+        'Answers that sound confident but aren’t grounded in your data',
+        'Unclear cost, latency, and quality trade-offs',
+        'Security and privacy questions with no clear owner',
+      ],
+    },
+    deliverables: [
+      { title: 'AI opportunity assessment', description: 'Prioritised use cases with feasibility, data readiness, and expected effort.' },
+      { title: 'Proof of concept', description: 'A focused prototype tested against real examples before full investment.' },
+      { title: 'Production AI system', description: 'Integrated application with access controls, logging, and fallback behaviour.' },
+      { title: 'Evaluation & monitoring', description: 'Test sets, quality metrics, and dashboards for cost, latency, and accuracy.' },
+    ],
+    capabilities: [
+      {
+        title: 'AI Services Catalogue',
+        items: [
+          'Generative AI applications',
+          'Large Language Model integration',
+          'Retrieval-Augmented Generation',
+          'AI chatbots',
+          'Enterprise knowledge assistants',
+          'AI agents',
+          'Multi-agent workflows',
+          'AI-powered search',
+          'Intelligent document processing',
+          'Machine learning',
+          'Natural Language Processing',
+          'Computer vision',
+          'Recommendation systems',
+          'Predictive analytics',
+          'AI workflow automation',
+          'Model deployment and monitoring',
+          'AI testing and evaluation',
+          'AI security and guardrails',
+        ],
+      },
+      {
+        title: 'MLOps & LLMOps',
+        items: [
+          'Model deployment',
+          'AI evaluation',
+          'Prompt versioning',
+          'Observability',
+          'Model monitoring',
+          'Inference optimization',
+          'AI quality testing',
+          'Guardrails',
+        ],
+      },
+    ],
+    approach: [
+      { title: 'Start with the task', description: 'Define the business task, the users, and what “good” looks like — before choosing a model.' },
+      { title: 'Check the data', description: 'Assess the data or documents the AI needs, including quality, access rights, and privacy.' },
+      { title: 'Prototype & evaluate', description: 'Build quickly, then measure against a set of real examples.' },
+      { title: 'Integrate safely', description: 'Server-side keys, permission checks, human review where needed, and audit logs.' },
+      { title: 'Operate & improve', description: 'Monitor quality, cost, and latency; update prompts, retrieval, or models as evidence suggests.' },
+    ],
+    technologies: [
+      { group: 'Models & APIs', items: ['OpenAI APIs', 'Anthropic APIs', 'Hugging Face', 'Open-weight models'] },
+      { group: 'Frameworks', items: ['LangChain', 'LlamaIndex', 'PyTorch', 'scikit-learn'] },
+      { group: 'Data & retrieval', items: ['PostgreSQL + pgvector', 'Qdrant', 'Pinecone', 'Elasticsearch / OpenSearch'] },
+      { group: 'Serving', items: ['Python', 'FastAPI', 'Node.js', 'Docker'] },
+    ],
+    useCases: [
+      { title: 'Knowledge assistant', description: 'Answer staff questions from policies and documentation, with sources.' },
+      { title: 'Document processing', description: 'Extract structured data from invoices, forms, or contracts for review.' },
+      { title: 'Support automation', description: 'Triage tickets and draft replies for agents to approve.' },
+      { title: 'Forecasting & recommendations', description: 'Use historical data to predict demand or recommend next actions.' },
+    ],
+    faqs: [
+      { question: 'Which AI model will you use?', answer: 'We choose based on the task, data sensitivity, quality requirements, latency, and cost. That may be a hosted model from OpenAI or Anthropic, an open-weight model, or a traditional ML model.' },
+      { question: 'Is our data used to train public models?', answer: 'We design integrations using provider settings and agreements that match your privacy requirements, and we discuss data handling explicitly during discovery. Policies vary by provider, so we review them with you.' },
+      { question: 'Can AI make mistakes?', answer: 'Yes. AI systems can produce incorrect output. We reduce risk with grounding, evaluation, guardrails, confidence thresholds, and human review for consequential decisions.' },
+      { question: 'How do we know if an AI project is worth it?', answer: 'We recommend a scoped proof of concept measured against real examples. It gives you evidence about quality and effort before a larger investment.' },
+    ],
+    features: ['ai-showcase', 'llmops'],
+    related: ['rag-development', 'ai-agents', 'data-engineering'],
+    cta: {
+      title: 'Explore what AI can do for your business.',
+      description: 'Bring a process, a document set, or a question. We’ll help you assess whether AI is the right fit.',
+      label: 'Discuss an AI Use Case',
+      to: '/contact?type=project&service=AI%20and%20RAG',
+    },
+  },
+  {
+    slug: 'rag-development',
+    name: 'RAG Development',
+    shortName: 'RAG Development',
+    group: 'ai',
+    icon: DatabaseZap,
+    summary: 'AI assistants that retrieve from your documents and answer with source references.',
+    seo: {
+      title: 'RAG Development Services — Retrieval-Augmented Generation',
+      description:
+        'RAG development services: AI knowledge assistants that retrieve from your documents, websites, and databases to generate source-grounded answers. Ingestion, chunking, embeddings, vector search, reranking, and evaluation.',
+    },
+    hero: {
+      eyebrow: 'Retrieval-Augmented Generation',
+      title: 'Your Business Knowledge. Accessible Through AI.',
+      description:
+        'Build AI assistants that retrieve relevant information from your documents and knowledge sources to generate more context-aware, source-grounded responses.',
+    },
+    problem: {
+      title: 'Knowledge is everywhere — and hard to find',
+      body: 'Answers live in PDFs, wikis, shared drives, and inboxes. People ask colleagues, search manually, or give up. A general-purpose chatbot can’t help because it doesn’t know your content.',
+      points: [
+        'Repeated questions interrupting experienced staff',
+        'Onboarding that depends on who you happen to ask',
+        'Keyword search that misses the right passage',
+        'Generic AI answers with no link to your sources',
+      ],
+    },
+    deliverables: [
+      { title: 'Ingestion pipeline', description: 'Connectors and parsers for your approved sources, with scheduled updates.' },
+      { title: 'Retrieval engine', description: 'Chunking, embeddings, vector or hybrid search, and reranking tuned to your content.' },
+      { title: 'Assistant interface', description: 'Chat or search UI with source citations, feedback capture, and access control.' },
+      { title: 'Evaluation suite', description: 'Question sets and metrics for retrieval quality, answer relevance, latency, and cost.' },
+    ],
+    capabilities: [
+      {
+        title: 'RAG Engineering',
+        items: [
+          'Document ingestion & parsing',
+          'Context-preserving chunking',
+          'Embedding pipelines',
+          'Vector & hybrid search',
+          'Reranking',
+          'Source citations',
+          'Permission-aware retrieval',
+          'RAG evaluation & monitoring',
+        ],
+      },
+    ],
+    approach: [
+      { title: 'Collect real questions', description: 'Gather the questions people actually ask — they become the evaluation set.' },
+      { title: 'Map sources & permissions', description: 'Decide which content is in scope and who may see what.' },
+      { title: 'Build the pipeline', description: 'Ingest, chunk, embed, and index; then tune retrieval against the question set.' },
+      { title: 'Ground the answers', description: 'Prompting that answers from retrieved context, cites sources, and says when it doesn’t know.' },
+      { title: 'Measure & monitor', description: 'Track retrieval quality, answer relevance, latency, cost, and user feedback in production.' },
+    ],
+    technologies: [
+      { group: 'Orchestration', items: ['LangChain', 'LlamaIndex', 'Python', 'FastAPI', 'Node.js'] },
+      { group: 'Models', items: ['OpenAI APIs', 'Anthropic APIs', 'Hugging Face'] },
+      { group: 'Vector stores', items: ['PostgreSQL with pgvector', 'Pinecone', 'Weaviate', 'Qdrant'] },
+      { group: 'Search & cache', items: ['Elasticsearch / OpenSearch', 'Redis'] },
+    ],
+    useCases: [
+      { title: 'HR & policy assistant', description: 'Employees get answers from the handbook with the exact clause cited.' },
+      { title: 'Support knowledge base', description: 'Agents and customers find answers in product documentation faster.' },
+      { title: 'Sales enablement', description: 'Find the right case study, spec sheet, or proposal section in seconds.' },
+      { title: 'Research & compliance search', description: 'Locate relevant passages across large document collections.' },
+    ],
+    faqs: [
+      { question: 'Does RAG stop AI from making things up?', answer: 'It reduces unsupported answers by grounding responses in retrieved content, but does not eliminate errors. We add citations, “I don’t know” behaviour, and evaluation to manage that risk.' },
+      { question: 'Which vector database do we need?', answer: 'Not every project needs a specialised vector database. PostgreSQL with pgvector is often enough; larger or more demanding workloads may suit Qdrant, Pinecone, or Weaviate. We recommend based on scale and existing infrastructure.' },
+      { question: 'Can the assistant respect document permissions?', answer: 'Yes. Permission metadata can be stored with each chunk so retrieval only returns content the user is allowed to see.' },
+      { question: 'How do you keep content up to date?', answer: 'Ingestion can run on a schedule or be triggered when documents change, re-indexing only what changed.' },
+    ],
+    features: ['rag-pipeline'],
+    related: ['ai-solutions', 'ai-agents', 'data-engineering'],
+    cta: {
+      title: 'Build Your AI Knowledge Assistant.',
+      description: 'Share a sample of your documents and the questions people ask. We’ll assess fit and propose a pilot.',
+      label: 'Build Your AI Knowledge Assistant',
+      to: '/contact?type=project&service=AI%20and%20RAG',
+    },
+  },
+  {
+    slug: 'ai-agents',
+    name: 'AI Agents & Business Automation',
+    shortName: 'AI Agents',
+    group: 'ai',
+    icon: Workflow,
+    summary: 'Agents that use approved tools, follow defined permissions, and hand off to people for approval.',
+    seo: {
+      title: 'AI Agent Development & Business Automation',
+      description:
+        'AI agent development: tool calling, workflow orchestration, multi-agent architectures, business process automation, support automation, report generation, document workflows, and human-in-the-loop approvals.',
+    },
+    hero: {
+      eyebrow: 'AI Agents & Automation',
+      title: 'Move Beyond Chatbots. Build Intelligent Workflows.',
+      description:
+        'AI agents can interact with approved tools, retrieve information, execute tasks, and coordinate workflows — all within the permissions you define, with people in the loop where it matters.',
+    },
+    problem: {
+      title: 'Work that spans many systems',
+      body: 'A lot of knowledge work is gathering information from several places, applying judgement, and preparing an output. It’s repetitive, but too varied for traditional rule-based automation.',
+      points: [
+        'Weekly reports assembled by hand from several tools',
+        'Support tickets that need lookup in CRM, docs, and order data',
+        'Documents that must be read, checked, and keyed into systems',
+        'Automation scripts that break when inputs vary',
+      ],
+    },
+    deliverables: [
+      { title: 'Workflow design', description: 'Steps, tools, permissions, and approval points mapped before anything is automated.' },
+      { title: 'Tool integrations', description: 'Secure, least-privilege connectors to your databases, knowledge bases, and APIs.' },
+      { title: 'Agent runtime', description: 'Orchestration, validation, retries, and human-in-the-loop approvals.' },
+      { title: 'Observability', description: 'Traces of every step and tool call, plus evaluation and cost tracking.' },
+    ],
+    capabilities: [
+      {
+        title: 'AI Agents & Automation',
+        items: [
+          'AI assistants',
+          'Tool calling',
+          'Workflow orchestration',
+          'Multi-agent architectures',
+          'Business process automation',
+          'Customer support automation',
+          'Internal knowledge assistants',
+          'Report generation',
+          'Document workflows',
+          'Human-in-the-loop approvals',
+          'Monitoring and evaluation',
+        ],
+      },
+    ],
+    approach: [
+      { title: 'Pick a contained workflow', description: 'Start where mistakes are cheap to catch and value is easy to measure.' },
+      { title: 'Define tools & permissions', description: 'Each tool gets the minimum access it needs, enforced on the server.' },
+      { title: 'Build with checkpoints', description: 'Validation after each step and approval gates before consequential actions.' },
+      { title: 'Evaluate on real cases', description: 'Run the agent against historical examples and review the traces.' },
+      { title: 'Expand gradually', description: 'Increase autonomy only as quality evidence and audit logs support it.' },
+    ],
+    technologies: [
+      { group: 'Agent frameworks', items: ['LangGraph', 'LangChain', 'Model Context Protocol', 'Custom orchestration'] },
+      { group: 'Models', items: ['OpenAI APIs', 'Anthropic APIs'] },
+      { group: 'Integration', items: ['REST APIs', 'Webhooks', 'Queues', 'PostgreSQL'] },
+      { group: 'Operations', items: ['Tracing & observability', 'Evaluation harnesses', 'Role-based access control'] },
+    ],
+    useCases: [
+      { title: 'Automated reporting', description: 'Collect data from several systems and draft a weekly summary for review.' },
+      { title: 'Support triage', description: 'Classify tickets, look up context, and draft replies for agents to approve.' },
+      { title: 'Document intake', description: 'Read incoming documents, extract fields, validate, and queue for approval.' },
+      { title: 'Sales operations', description: 'Research accounts, update CRM records, and prepare follow-ups for sales reps.' },
+    ],
+    faqs: [
+      { question: 'Can an agent take actions without approval?', answer: 'Only if you decide it should. We typically start with human approval for any action that sends, changes, or deletes something, and relax that only with evidence.' },
+      { question: 'How are credentials protected?', answer: 'API keys and credentials stay on the server, scoped to the minimum permissions required. They are never exposed in the browser or in prompts.' },
+      { question: 'What about prompt injection?', answer: 'Content from documents, emails, and websites is treated as data, not instructions. We apply input handling, tool restrictions, and output validation to mitigate injection risk.' },
+      { question: 'How is this different from RPA?', answer: 'Traditional RPA follows fixed rules and breaks when inputs vary. Agents can handle variation and unstructured content, and can be combined with deterministic automation where rules are clear.' },
+    ],
+    features: ['agent-workflow'],
+    related: ['ai-solutions', 'rag-development', 'software-development'],
+    cta: {
+      title: 'Which workflow would you automate first?',
+      description: 'Describe a repetitive process that spans several tools. We’ll assess whether an agent is the right fit.',
+      label: 'Discuss an Automation',
+      to: '/contact?type=project&service=AI%20Agents%20and%20Automation',
+    },
+  },
+]

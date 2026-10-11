@@ -1,145 +1,300 @@
-/* ─── Design tokens ─── */
-:root {
-  --primary: #2563EB;
-  --primary-hover: #1d4ed8;
-  --secondary: #0F172A;
-  --accent-orange: #F97316;
-  --accent-orange-dark: #C2410C;
-  --bg-light: #F8FAFC;
-  --border-light: #E2E8F0;
-  --text-muted: #64748B;
-}
+@import 'tailwindcss';
 
-html { scroll-behavior: smooth; }
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — the single source of truth for colour, type
+   and motion. Tailwind generates utilities from these
+   (e.g. bg-ink-900, text-muted, border-line, text-brand).
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  --color-ink-950: #080b14; /* primary background */
+  --color-ink-900: #0d1220; /* secondary background */
+  --color-ink-800: #121a2b; /* elevated surface */
+  --color-ink-700: #1a2438;
+  --color-ink-600: #243049;
 
-body {
-  margin: 0;
-  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #ffffff;
-  color: var(--secondary);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  --color-brand: #4f8cff; /* primary accent */
+  --color-brand-strong: #3b76ec;
+  --color-iris: #8b5cf6; /* secondary accent */
+  --color-aqua: #22d3ee; /* highlight accent */
+  --color-ember: #f97316; /* logo accent — use sparingly */
+  --color-success: #34d399;
+  --color-danger: #f87171;
+  --color-warn: #fbbf24;
 
-/* ─── Focus ─── */
-a:focus-visible, button:focus-visible, input:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 3px;
-}
-a, button { transition: all 0.2s ease; }
-input::placeholder { color: #9ca3af; }
+  --color-fg: #f8fafc; /* primary text */
+  --color-muted: #a5b1c5; /* secondary text */
+  --color-subtle: #7d8aa3; /* tertiary text (≥4.5:1 on ink-950) */
 
-/* ─────────────────────────────────────
-   NAVBAR
-───────────────────────────────────── */
-.nav-hamburger { display: none !important; }
+  --color-line: rgb(148 163 184 / 0.12);
+  --color-line-strong: rgb(148 163 184 / 0.22);
 
-@media (max-width: 768px) {
-  /* hide desktop items */
-  nav ul            { display: none !important; }
-  .desktop-cta      { display: none !important; }
-  /* show hamburger */
-  .nav-hamburger    { display: flex !important; align-items: center; justify-content: center; }
-}
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
-/* ─────────────────────────────────────
-   HERO STATS
-───────────────────────────────────── */
-.hero-stat { border-right: 1px solid rgba(226,232,240,0.8); }
-.hero-stat:last-child { border-right: none; }
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
-@media (max-width: 600px) {
-  .hero-stats { grid-template-columns: repeat(2, 1fr) !important; }
-  /* remove right border on 2nd & 4th items (right edge of each row) */
-  .hero-stat:nth-child(2n) { border-right: none !important; }
-}
+  --animate-grid-drift: grid-drift 40s linear infinite;
+  --animate-dash: dash 1.6s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-pulse-soft: pulse-soft 2.4s ease-in-out infinite;
+  --animate-spin-slow: spin 40s linear infinite;
 
-/* ─────────────────────────────────────
-   FOOTER GRID
-───────────────────────────────────── */
-@media (max-width: 768px) {
-  .footer-top-row {
-    grid-template-columns: 1fr !important;
-    gap: 28px !important;
+  @keyframes grid-drift {
+    from { background-position: 0 0, 0 0; }
+    to { background-position: 0 56px, 56px 0; }
   }
-  .footer-bottom-row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 12px !important;
+  @keyframes dash {
+    to { stroke-dashoffset: -24; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -10px, 0); }
+  }
+  @keyframes marquee {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.45; }
   }
 }
 
-/* ─────────────────────────────────────
-   FAQ CAROUSEL
-───────────────────────────────────── */
-@media (max-width: 640px) {
-  .faq-carousel { padding-left: 16px !important; padding-right: 0 !important; }
+/* ─── Base ─── */
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 88px;
+  }
+  body {
+    background-color: var(--color-ink-950);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+  a, button, [role='tab'], summary {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  ::selection {
+    background-color: rgb(79 140 255 / 0.35);
+    color: var(--color-fg);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-aqua);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-ink-950); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-ink-600);
+    border-radius: 999px;
+    border: 2px solid var(--color-ink-950);
+  }
 }
 
-/* ─────────────────────────────────────
-   CONTACT GRID
-───────────────────────────────────── */
-@media (max-width: 768px) {
-  .contact-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+/* ─── Utilities ─── */
+@utility container-site {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1rem;
+  @media (width >= 40rem) { padding-inline: 1.5rem; }
+  @media (width >= 64rem) { padding-inline: 2rem; }
 }
 
-@media (max-width: 480px) {
-  .cf-row { grid-template-columns: 1fr !important; }
+@utility surface {
+  background-color: rgb(13 18 32 / 0.72);
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
 }
 
-/* ─────────────────────────────────────
-   MOBILE MENU (modal content)
-───────────────────────────────────── */
-.mobile-nav { display: flex; flex-direction: column; gap: 4px; }
-
-.mobile-link {
-  background: none; border: none; padding: 12px 16px;
-  text-align: left; font-size: 16px; font-weight: 500;
-  color: var(--secondary); cursor: pointer; border-radius: 10px;
-  transition: background-color 0.15s ease, color 0.15s ease;
-}
-.mobile-link:hover { background-color: #f1f5f9; color: var(--primary); }
-
-.mobile-cta {
-  margin-top: 12px; padding: 14px 16px;
-  background: linear-gradient(135deg, #2563eb, #0ea5e9);
-  color: white; border: none; border-radius: 12px;
-  font-size: 15px; font-weight: 600; cursor: pointer; text-align: center;
+@utility surface-raised {
+  background: linear-gradient(180deg, rgb(26 36 56 / 0.7), rgb(18 26 43 / 0.7));
+  border: 1px solid var(--color-line);
+  border-radius: 1rem;
+  box-shadow: 0 1px 0 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.6);
 }
 
-/* ─────────────────────────────────────
-   ANIMATIONS
-───────────────────────────────────── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(18px); }
-  to   { opacity: 1; transform: translateY(0); }
+@utility glass {
+  background-color: rgb(13 18 32 / 0.6);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
 }
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+
+@utility text-gradient {
+  background-image: linear-gradient(100deg, #8fb6ff 0%, var(--color-brand) 35%, var(--color-aqua) 65%, #b9a2fb 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-16px) scale(0.98); }
-  to   { opacity: 1; transform: translateY(0)    scale(1); }
+
+@utility bg-grid {
+  background-image:
+    linear-gradient(to bottom, rgb(148 163 184 / 0.07) 1px, transparent 1px),
+    linear-gradient(to right, rgb(148 163 184 / 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50%       { opacity: 0.5; transform: scale(0.8); }
+
+@utility mask-fade-b {
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
 }
-@keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37,99,235,0.38); }
-  50%       { box-shadow: 0 6px 36px rgba(37,99,235,0.65); }
+
+@utility mask-radial {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%);
 }
-@keyframes float-y {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-10px); }
+
+@utility mask-fade-x {
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
 }
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+
+/* Gradient hairline border on hover (used by interactive cards). */
+@utility card-glow {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgb(79 140 255 / 0.6), rgb(34 211 238 / 0.25), rgb(139 92 246 / 0.5));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: -1;
+  }
+  &:hover::before,
+  &:focus-within::before {
+    opacity: 1;
+  }
 }
-@keyframes footerReveal {
-  from { opacity: 0; transform: translateY(14px); }
-  to   { opacity: 1; transform: translateY(0); }
+
+/* Animated underline for text links. */
+@utility link-underline {
+  position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 1.5px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--color-brand), var(--color-aqua));
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s var(--ease-out-expo);
+  }
+  &:hover::after,
+  &:focus-visible::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
 }
-footer { animation: footerReveal 0.6s ease-out; }
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* Form controls share one style. */
+@utility field {
+  width: 100%;
+  border-radius: 0.75rem;
+  border: 1px solid var(--color-line-strong);
+  background-color: rgb(8 11 20 / 0.6);
+  padding: 0.7rem 0.9rem;
+  font-size: 0.9375rem;
+  color: var(--color-fg);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  &::placeholder { color: var(--color-subtle); }
+  &:hover { border-color: rgb(148 163 184 / 0.35); }
+  &:focus {
+    outline: none;
+    border-color: var(--color-brand);
+    background-color: rgb(8 11 20 / 0.9);
+    box-shadow: 0 0 0 4px rgb(79 140 255 / 0.18);
+  }
+  &[aria-invalid='true'] {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 4px rgb(248 113 113 / 0.12);
+  }
+}
+
+select.field {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%23a5b1c5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m4 6 4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  padding-right: 2.5rem;
+}
+select.field option { background-color: var(--color-ink-800); color: var(--color-fg); }
+
+/* ─── Phones: swipeable card rows instead of long stacks ───
+   Add `snap-row` to a grid; below 640px it becomes a horizontal,
+   scroll-snapping carousel with the next card peeking in. */
+@utility snap-row {
+  @media (width < 40rem) {
+    display: flex !important;
+    overflow-x: auto !important;
+    /* Don't let the row's total width leak into parent grid/flex sizing. */
+    contain: inline-size;
+    min-width: 0;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+    scroll-padding-inline: 1rem;
+    gap: 0.75rem !important;
+    padding-bottom: 0.25rem;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+    & > * {
+      flex: 0 0 84%;
+      scroll-snap-align: start;
+    }
+  }
+}
+
+/* ─── Touch screens: native-feeling press feedback ─── */
+@media (hover: none) {
+  .card-glow {
+    transition: transform 0.15s ease;
+  }
+  .card-glow:active {
+    transform: scale(0.98);
+  }
+}
+
+/* iOS zooms into inputs smaller than 16px — keep fields at 16px on phones. */
+@media (width < 48rem) {
+  .field { font-size: 1rem; }
+}
+
+/* ─── Reduced motion: stop decorative loops everywhere. ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

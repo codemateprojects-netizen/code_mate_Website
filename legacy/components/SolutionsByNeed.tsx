@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Lightbulb, Smartphone, ShoppingBag, Zap, Wrench, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 
@@ -37,8 +38,12 @@ const solutions = [
 const accents = ['#2563eb', '#1e3a8a', '#f97316']
 
 const SolutionsByNeed = () => {
+  const [hovered, setHovered] = useState<number | null>(null)
+
   return (
     <section style={styles.section} id="solutions">
+      <div style={styles.bgOrb} />
+
       <div style={styles.container}>
 
         <motion.div
@@ -55,6 +60,7 @@ const SolutionsByNeed = () => {
         <div style={styles.grid}>
           {solutions.map((s, i) => {
             const accent = accents[i % accents.length]
+            const isHov = hovered === i
             return (
               <motion.div
                 key={s.title}
@@ -63,17 +69,39 @@ const SolutionsByNeed = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2, ease: 'easeOut' } }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: `0 0 0 1px ${accent}35, 0 20px 44px rgba(0,0,0,0.09)`,
+                  transition: { duration: 0.22, ease: 'easeOut' },
+                }}
+                onHoverStart={() => setHovered(i)}
+                onHoverEnd={() => setHovered(null)}
               >
-                <div style={{
-                  ...styles.iconBox,
-                  backgroundColor: accent + '14',
-                  border: `1px solid ${accent}30`,
-                }}>
+                <motion.div
+                  style={{
+                    ...styles.iconBox,
+                    backgroundColor: accent + '14',
+                    border: `1px solid ${accent}30`,
+                  }}
+                  animate={{ scale: isHov ? 1.1 : 1 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                >
                   <s.Icon size={19} strokeWidth={1.8} style={{ color: accent }} />
-                </div>
-                <h3 style={styles.title}>{s.title}</h3>
+                </motion.div>
+                <motion.h3
+                  style={styles.title}
+                  animate={{ color: isHov ? accent : '#0f172a' }}
+                  transition={{ duration: 0.18 }}
+                >
+                  {s.title}
+                </motion.h3>
                 <p style={styles.desc}>{s.desc}</p>
+
+                <motion.div
+                  style={{ ...styles.accentBar, background: accent }}
+                  animate={{ scaleX: isHov ? 1 : 0 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                />
               </motion.div>
             )
           })}
@@ -89,9 +117,22 @@ const styles: any = {
     position: 'relative',
     padding: '88px 20px 80px',
     backgroundColor: '#ffffff',
+    overflow: 'hidden',
+  },
+
+  bgOrb: {
+    position: 'absolute',
+    width: '460px', height: '460px',
+    background: 'radial-gradient(circle, rgba(249,115,22,0.05) 0%, transparent 70%)',
+    borderRadius: '50%',
+    top: '-140px', right: '-120px',
+    filter: 'blur(60px)',
+    pointerEvents: 'none',
   },
 
   container: {
+    position: 'relative',
+    zIndex: 1,
     maxWidth: '1100px',
     margin: '0 auto',
   },
@@ -131,11 +172,13 @@ const styles: any = {
   },
 
   card: {
-    backgroundColor: '#f8fafc',
+    position: 'relative',
+    backgroundColor: '#ffffff',
     padding: '24px',
     borderRadius: '16px',
-    border: '1px solid rgba(226,232,240,0.9)',
+    boxShadow: '0 0 0 1px rgba(226,232,240,0.9), 0 2px 8px rgba(0,0,0,0.04)',
     cursor: 'default',
+    overflow: 'hidden',
   },
 
   iconBox: {
@@ -151,7 +194,6 @@ const styles: any = {
   title: {
     fontSize: '15.5px',
     fontWeight: 700,
-    color: '#0f172a',
     margin: '0 0 6px',
     lineHeight: '1.35',
   },
@@ -161,6 +203,15 @@ const styles: any = {
     lineHeight: '1.6',
     color: '#64748b',
     margin: 0,
+  },
+
+  accentBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '3px',
+    transformOrigin: 'left',
   },
 }
 

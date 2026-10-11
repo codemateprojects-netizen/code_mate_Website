@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 
@@ -12,6 +13,8 @@ const steps = [
 ]
 
 const Process = () => {
+  const [hovered, setHovered] = useState<number | null>(null)
+
   return (
     <section style={styles.section} id="process">
       <div style={styles.container}>
@@ -33,6 +36,8 @@ const Process = () => {
         <div style={styles.timeline}>
           {steps.map((s, i) => {
             const isOrange = i % 3 === 2
+            const accent = isOrange ? '#f97316' : '#2563eb'
+            const isHov = hovered === i
             return (
               <motion.div
                 key={s.num}
@@ -41,23 +46,35 @@ const Process = () => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 viewport={{ once: true }}
+                onHoverStart={() => setHovered(i)}
+                onHoverEnd={() => setHovered(null)}
               >
                 <div style={styles.left}>
-                  <div style={{
-                    ...styles.numCircle,
-                    background: isOrange
-                      ? 'linear-gradient(135deg, #f97316, #fb923c)'
-                      : 'linear-gradient(135deg, #2563eb, #0ea5e9)',
-                    boxShadow: isOrange
-                      ? '0 4px 14px rgba(249,115,22,0.32)'
-                      : '0 4px 14px rgba(37,99,235,0.32)',
-                  }}>
+                  <motion.div
+                    style={{
+                      ...styles.numCircle,
+                      background: isOrange
+                        ? 'linear-gradient(135deg, #f97316, #fb923c)'
+                        : 'linear-gradient(135deg, #2563eb, #0ea5e9)',
+                      boxShadow: isOrange
+                        ? '0 4px 14px rgba(249,115,22,0.32)'
+                        : '0 4px 14px rgba(37,99,235,0.32)',
+                    }}
+                    animate={{ scale: isHov ? 1.12 : 1 }}
+                    transition={{ duration: 0.2, ease: 'easeOut' }}
+                  >
                     {s.num}
-                  </div>
+                  </motion.div>
                   {i < steps.length - 1 && <div style={styles.line} />}
                 </div>
                 <div style={styles.content}>
-                  <h3 style={styles.stepTitle}>{s.title}</h3>
+                  <motion.h3
+                    style={styles.stepTitle}
+                    animate={{ color: isHov ? accent : '#0f172a' }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    {s.title}
+                  </motion.h3>
                   <p style={styles.stepDesc}>{s.desc}</p>
                 </div>
               </motion.div>

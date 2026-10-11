@@ -67,19 +67,33 @@ const WhyUs = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -5, transition: { duration: 0.2, ease: 'easeOut' } }}
+                whileHover={{
+                  y: -6,
+                  boxShadow: `0 0 0 1px ${accent}35, 0 20px 44px rgba(0,0,0,0.09)`,
+                  transition: { duration: 0.22, ease: 'easeOut' },
+                }}
                 onHoverStart={() => setHovered(i)}
                 onHoverEnd={() => setHovered(null)}
               >
-                <div style={{
-                  ...styles.iconBox,
-                  backgroundColor: accent + '14',
-                  border: `1px solid ${accent}30`,
-                }}>
+                <motion.div
+                  style={{
+                    ...styles.iconBox,
+                    backgroundColor: accent + '14',
+                    border: `1px solid ${accent}30`,
+                  }}
+                  animate={{ scale: isHov ? 1.1 : 1 }}
+                  transition={{ duration: 0.22, ease: 'easeOut' }}
+                >
                   <p.Icon size={19} strokeWidth={1.8} style={{ color: accent }} />
-                </div>
+                </motion.div>
                 <h3 style={{ ...styles.title, color: isHov ? accent : '#0f172a' }}>{p.title}</h3>
                 <p style={styles.desc}>{p.desc}</p>
+
+                <motion.div
+                  style={{ ...styles.accentBar, background: accent }}
+                  animate={{ scaleX: isHov ? 1 : 0 }}
+                  transition={{ duration: 0.25, ease: 'easeOut' }}
+                />
               </motion.div>
             )
           })}
@@ -136,11 +150,13 @@ const styles: any = {
   },
 
   card: {
+    position: 'relative',
     backgroundColor: '#ffffff',
     padding: '24px',
     borderRadius: '16px',
     boxShadow: '0 0 0 1px rgba(226,232,240,0.9), 0 2px 8px rgba(0,0,0,0.04)',
     cursor: 'default',
+    overflow: 'hidden',
   },
 
   iconBox: {
@@ -165,6 +181,15 @@ const styles: any = {
     lineHeight: '1.6',
     color: '#64748b',
     margin: 0,
+  },
+
+  accentBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '3px',
+    transformOrigin: 'left',
   },
 }
 

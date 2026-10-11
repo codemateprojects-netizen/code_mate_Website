@@ -21,12 +21,22 @@ const TrustStrip = () => {
         viewport={{ once: true }}
       >
         {points.map((p, i) => (
-          <div key={i} className="trust-item" style={styles.item}>
-            <div style={styles.iconBox}>
+          <motion.div
+            key={i}
+            className="trust-item"
+            style={styles.item}
+            whileHover={{ y: -2 }}
+            transition={{ duration: 0.18, ease: 'easeOut' }}
+          >
+            <motion.div
+              style={styles.iconBox}
+              whileHover={{ scale: 1.1, backgroundColor: 'rgba(37,99,235,0.14)' }}
+              transition={{ duration: 0.18, ease: 'easeOut' }}
+            >
               <p.Icon size={16} strokeWidth={2} style={{ color: '#2563eb' }} />
-            </div>
+            </motion.div>
             <span style={styles.label}>{p.label}</span>
-          </div>
+          </motion.div>
         ))}
       </motion.div>
     </section>

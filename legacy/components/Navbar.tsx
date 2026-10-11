@@ -76,6 +76,7 @@ const Navbar = () => {
               <li key={item.id} style={{ listStyle: 'none' }}>
                 <a
                   href={`#${item.id}`}
+                  className="nav-link"
                   style={{
                     ...styles.link,
                     ...(active === item.id ? styles.linkActive : {})
@@ -93,6 +94,7 @@ const Navbar = () => {
 
             {/* Search — visible on all screens */}
             <button
+              className="nav-icon-btn"
               style={styles.iconBtn}
               onClick={() => setOpenSearch(true)}
               aria-label="Search"
@@ -101,13 +103,13 @@ const Navbar = () => {
             </button>
 
             {/* CTA — desktop only */}
-            <a href="#contact" className="desktop-cta" style={styles.cta}>
+            <a href="#contact" className="desktop-cta nav-cta" style={styles.cta}>
               Start a Project
             </a>
 
             {/* Hamburger — mobile only */}
             <button
-              className="nav-hamburger"
+              className="nav-hamburger nav-icon-btn"
               style={styles.iconBtn}
               onClick={() => setMobileOpen(v => !v)}
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
