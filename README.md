@@ -43,7 +43,7 @@ npm run dev:api
 |---|---|
 | `npm run dev` | Vite dev server with hot reload |
 | `npm run dev:api` | Forms API with auto-restart; loads `.env` |
-| `npm run build` | Type-checks (app, server, config) and builds to `dist/`, including `sitemap.xml` and `robots.txt` |
+| `npm run build` | Type-checks (app, server, config), builds to `dist/` (incl. `sitemap.xml`, `robots.txt`) and bundles the Vercel function |
 | `npm start` | Production server: serves `dist/` **and** the API from one process |
 | `npm run lint` | ESLint (React hooks + React Compiler rules) |
 | `npm run typecheck` | TypeScript only |
@@ -106,29 +106,35 @@ See [`.env.example`](.env.example) for the full annotated list. The essentials:
 
 ## Deployment
 
-### Option A — one Node server (simplest; recommended)
-Works on Render, Railway, Fly.io, a VPS, etc.
+### Vercel (current setup)
+The repo is ready for Vercel with zero extra configuration — `vercel.json` sets the build, SPA routing, security headers, and asset caching.
+
+- **Pages** are served from `dist/`; every non-`/api` URL falls back to `index.html`.
+- **Forms** go to a serverless function at `/api/inquiries` (`api/inquiries.js`, generated from `server/vercel.ts` by `npm run build:api` and committed). After changing anything in `server/` or `shared/`, run `npm run build` (or `npm run build:api`) and commit the regenerated file.
+- Vercel's filesystem is temporary, so the function delivers by **email and/or webhook**. In *Project → Settings → Environment Variables* add either:
+  - `RESEND_API_KEY`, `INQUIRY_TO_EMAIL=info@syjencode.in`, `INQUIRY_FROM_EMAIL=website@syjencode.in` (domain verified in Resend), and/or
+  - `INQUIRY_WEBHOOK_URL` (Slack, Zapier, Make, a CRM…).
+  Until one is set, forms show a friendly "please email us" message with a pre-filled email link — never a false success.
+- `VITE_SITE_URL` should be your custom domain (e.g. `https://www.syjencode.in`). If unset, the build falls back to Vercel's production domain for canonical URLs and the sitemap.
+- Pushes to `main` deploy to production; other branches get preview URLs.
+- Rate limiting in serverless functions is per instance (best effort). For stricter limits, add Vercel Firewall rate-limit rules for `/api/inquiries`.
+
+### Any Node host (Render, Railway, Fly.io, VPS)
 
 ```bash
 npm ci
 VITE_SITE_URL=https://www.your-domain.com npm run build
-npm start            # serves the site + /api on $PORT
+npm start            # serves the site + /api on $PORT, also stores submissions in server/data/
 ```
-Set the server variables in your host's dashboard. Use HTTPS (most hosts provide it) and set `TRUST_PROXY=true` when behind their proxy.
-
-### Option B — static host (Netlify, Vercel, Cloudflare Pages) + separate API
-1. Build with `npm run build` and publish `dist/`. `public/_redirects` already provides the Netlify SPA fallback. On Vercel, add a rewrite of `/(.*)` to `/index.html`.
-2. Run `server/index.ts` elsewhere (Option A without the frontend) and set `VITE_FORM_ENDPOINT=https://api.your-domain.com/api/inquiries` plus `ALLOWED_ORIGINS=https://www.your-domain.com` on the API.
-3. Alternatively, point `VITE_FORM_ENDPOINT` at a form provider that returns JSON `{ "ok": true }`.
-
----
+Set `TRUST_PROXY=true` behind the host's proxy.
 
 ## Project structure
 
 ```
-server/            Express API (forms) + static hosting for dist/
+server/            Form handling core, Express server, Vercel function source
+api/               Generated Vercel function bundle (do not edit)
 shared/            Validation schema shared by browser and server
-public/            favicon, og-image.png, _redirects
+public/            favicon, app icons, manifest, og-image.png
 src/
   config/site.ts   ← company details & feature toggles
   data/            ← all page content (services, products, portfolio, …)

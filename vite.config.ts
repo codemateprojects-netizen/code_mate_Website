@@ -46,8 +46,12 @@ function seoFiles(siteUrl: string | undefined): Plugin {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
+  // On Vercel, fall back to the project's production domain when VITE_SITE_URL isn't set.
+  const vercelUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  const siteUrl = env.VITE_SITE_URL || (vercelUrl ? `https://${vercelUrl}` : '')
   return {
-    plugins: [react(), tailwindcss(), seoFiles(env.VITE_SITE_URL)],
+    plugins: [react(), tailwindcss(), seoFiles(siteUrl)],
+    define: { 'import.meta.env.VITE_SITE_URL': JSON.stringify(siteUrl) },
     server: {
       // Forward form submissions to the local Express API during development.
       proxy: { '/api': `http://localhost:${env.PORT || 8787}` },
